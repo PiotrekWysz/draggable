@@ -5,44 +5,96 @@
       <div class="row">
         <div class="col-md-4">
           <h3>Oczekujące</h3>
-          <draggable class="dragArea" :list="list1"
-            @add="onAdd($event, {list:list1, number: 1})"  
-            @remove="onRemove($event, {list:list1, number: 1})" 
-            group="people">
+          <draggable
+            class="dragArea"
+            :list="list1"
+            @add="onAdd($event, {list:list1, number: 1})"
+            @remove="onRemove($event, {list:list1, number: 1})"
+            group="people"
+          >
             <div class="list-group-item" v-for="element in list1" :key="element.id">
-              <Feature v-if="element.type == 1" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete" />
-              <Bugfix v-if="element.type == 2" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete"/>
-              <Default v-if="element.type == 3" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete"/>
+              <Feature
+                v-if="element.type == 1"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
+              <Bugfix
+                v-if="element.type == 2"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
+              <Default
+                v-if="element.type == 3"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
             </div>
           </draggable>
         </div>
 
         <div class="col-md-4">
           <h3>W Realizacji</h3>
-          <draggable class="dragArea" 
-            :list="list2" 
-            @add="onAdd($event, {list:list2, number: 2})"  
-            @remove="onRemove($event, {list:list2, number: 2})" 
-            group="people">
+          <draggable
+            class="dragArea"
+            :list="list2"
+            @add="onAdd($event, {list:list2, number: 2})"
+            @remove="onRemove($event, {list:list2, number: 2})"
+            group="people"
+          >
             <div class="list-group-item" v-for="element in list2" :key="element.id">
-              <Feature v-if="element.type == 1" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete" />
-              <Bugfix v-if="element.type == 2" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete"/>
-              <Default v-if="element.type == 3" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete"/>
+              <Feature
+                v-if="element.type == 1"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
+              <Bugfix
+                v-if="element.type == 2"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
+              <Default
+                v-if="element.type == 3"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
             </div>
           </draggable>
         </div>
 
         <div class="col-md-4">
           <h3>Wykonane</h3>
-          <draggable class="dragArea" :list="list3" 
+          <draggable
+            class="dragArea"
+            :list="list3"
             group="people"
-            @add="onAdd($event, {list:list3, number: 3})"  
-            @remove="onRemove($event, {list:list3, number: 3})" 
+            @add="onAdd($event, {list:list3, number: 3})"
+            @remove="onRemove($event, {list:list3, number: 3})"
           >
             <div class="list-group-item" v-for="element in list3" :key="element.id">
-              <Feature v-if="element.type == 1" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete" />
-              <Bugfix v-if="element.type == 2" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete"/>
-              <Default v-if="element.type == 3" :element="element" @edit-element="setEditItem" @delete-element="setElementDelete"/>
+              <Feature
+                v-if="element.type == 1"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
+              <Bugfix
+                v-if="element.type == 2"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
+              <Default
+                v-if="element.type == 3"
+                :element="element"
+                @edit-element="setEditItem"
+                @delete-element="setElementDelete"
+              />
             </div>
           </draggable>
         </div>
@@ -73,7 +125,7 @@ import EditModal from "../components/ModalEdit";
 import Feature from "../components/Feature";
 import Bugfix from "../components/Bugfix";
 import Default from "../components/Default";
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   name: "Draggable",
@@ -88,10 +140,10 @@ export default {
     DeleteModal,
     EditModal
   },
-  computed: mapState(['list1', 'list2', 'list3', 'maxId']),  
+  computed: mapState(["list1", "list2", "list3", "maxId"]),
   data() {
     return {
-      isLoading: false,      
+      isLoading: false,
       controlOnStart: true,
       showHideDialog: false,
       showDeleteModal: false,
@@ -100,15 +152,15 @@ export default {
       editedItem: {
         description: "",
         type: 1,
-        name: "default",
+        name: "feature",
         id: 10
       },
       defaultItem: {
         description: "",
         type: 1,
-        name: "default",
-        id:""
-      },
+        name: "feature",
+        id: ""
+      }
     };
   },
   methods: {
@@ -127,19 +179,19 @@ export default {
       this.infoModal = event;
     },
     deleteTodo(event) {
-      this.$store.commit('removeElement', event);
+      this.$store.commit("removeElement", event);
       this.showDeleteModal = false;
     },
     editItem(event) {
       if (this.editedIndex != "") {
-        this.$store.commit('editElement', event);
+        this.$store.commit("editElement", event);
         this.showHideDialog = false;
       } else {
-        this.$store.commit('addElement', event);
+        this.$store.commit("addElement", event);
         this.showHideDialog = false;
       }
     },
-    hideModal() {      
+    hideModal() {
       this.showDeleteModal = false;
       this.showHideDialog = false;
       this.infoModal = null;
@@ -147,15 +199,13 @@ export default {
       this.editedItem = this.defaultItem;
     },
     onAdd(event, list) {
-      this.$store.commit('addList',list);
+      this.$store.commit("addList", list);
     },
     onRemove(event, list) {
-      this.$store.commit('removeList',list);
-    },
+      this.$store.commit("removeList", list);
+    }
   },
-  created() {
-   
-  }
+  created() {}
 };
 </script>
 
@@ -207,5 +257,4 @@ h3 {
   cursor: pointer;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-
 </style>

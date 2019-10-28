@@ -26,20 +26,23 @@
               rows="10"
               max-rows="16"
               class="warning-text"
-            >
-            </textarea>
+            ></textarea>
           </div>
           <div class="form-group">
             <label for="sel1">Wybierz rodzaj</label>
             <select v-model="infoModal.type" @change="changeType" class="form-control" id="sel1">
-              <option :value="3">DEFAULT</option>
+              <option :value="1">FEATURE</option>
               <option :value="2">BUGFIX</option>
-              <option :value="1">FEATURE</option>              
+              <option :value="3">DEFAULT</option>
             </select>
           </div>
         </div>
         <div class="modal-footer">
-          <button @click="$emit('edit-item', infoModal)" type="button" class="btn btn-primary">Zapisz</button>
+          <button
+            @click="$emit('edit-item', infoModal)"
+            type="button"
+            class="btn btn-primary"
+          >Zapisz</button>
           <button
             @click="$emit('hide-modal')"
             type="button"
@@ -57,31 +60,29 @@ export default {
   name: "ModalEdit",
   props: ["infoModal"],
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
     changeType() {
-        if (this.infoModal.type == 1) {
-          this.infoModal.name = "feature";
-        }
-
-        if (this.infoModal.type == 2) {
-          this.infoModal.name = "bugfix";
-        }
-
-        if (this.infoModal.type == 3) {
-          this.infoModal.name = "default";
-        }
+      if (this.infoModal.type == 1) {
+        this.infoModal.name = "feature";
       }
+
+      if (this.infoModal.type == 2) {
+        this.infoModal.name = "bugfix";
+      }
+
+      if (this.infoModal.type == 3) {
+        this.infoModal.name = "default";
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
 .warning-text {
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   width: 100%;
 }
 
