@@ -11,7 +11,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/vue-fontawesome": "^0.1.7",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "idle-vue": "^2.0.5",
     "jquery": "^3.4.1",
     "uuid": "^3.3.2",
